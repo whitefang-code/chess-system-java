@@ -52,7 +52,23 @@ public class UI {
 			System.out.print((8 - i) + " ");
 			for (int j = 0; j < pieces.length; j++) {
 
-				printPiece(pieces[i][j], true);
+				printPiece(pieces[i][j], false);
+			}
+			System.out.println();
+		}
+		System.out.println("  a b c d e f g h");
+
+	}
+
+	// nova versão
+
+	public static void printBoard(final ChessPiece[][] pieces, final boolean[][] possibleMoves) {
+
+		for (int i = 0; i < pieces.length; i++) {
+			System.out.print((8 - i) + " ");
+			for (int j = 0; j < pieces.length; j++) {
+
+				printPiece(pieces[i][j], possibleMoves[i][j]);
 			}
 			System.out.println();
 		}
