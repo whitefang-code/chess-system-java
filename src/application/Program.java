@@ -1,7 +1,9 @@
 package application;
 
+import java.util.ArrayList;
 //https://github.com/acenelio/chess-system-java/blob/master/src/application/UI.java
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import chess.ChessException;
@@ -15,10 +17,11 @@ public class Program {
 
 		final Scanner sc = new Scanner(System.in);
 		final ChessMatch chessMatch = new ChessMatch();
+		final List<ChessPiece> captured = new ArrayList<>();
 
 		while (true) {
 			try {
-				UI.printMatch(chessMatch);
+				UI.printMatch(chessMatch, captured);
 				System.out.println();
 				System.out.print("Source: ");
 				final ChessPosition source = UI.readChessPosition(sc);
@@ -29,6 +32,9 @@ public class Program {
 				System.out.print("Target : ");
 				final ChessPosition target = UI.readChessPosition(sc);
 				final ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
+				if (capturedPiece != null) {
+					captured.add(capturedPiece);
+				}
 			} catch (final ChessException e) {
 				System.out.println(e.getMessage());
 				sc.nextLine();
